@@ -1,7 +1,6 @@
-# Secret Contracts Starter Pack
+# Hermit Contracts Starter Pack
 
-This is a template to build secret contracts in Rust to run in
-[Secret Network](https://github.com/enigmampc/SecretNetwork).
+This is a template to build hermit contracts in Rust to run in Hermit Network
 To understand the framework better, please read the overview in the
 [cosmwasm repo](https://github.com/CosmWasm/cosmwasm/blob/master/README.md),
 and dig into the [cosmwasm docs](https://www.cosmwasm.com).
@@ -24,7 +23,7 @@ Now, use it to create your new contract.
 Go to the folder in which you want to place it and run:
 
 ```sh
-cargo generate --git https://github.com/enigmampc/secret-template.git --name YOUR_NAME_HERE
+cargo generate --git https://github.com/enigmampc/hermit-template.git --name YOUR_NAME_HERE
 ```
 
 You will now have a new folder called `YOUR_NAME_HERE` (I hope you changed that to something else)
