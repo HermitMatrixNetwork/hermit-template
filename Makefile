@@ -40,7 +40,7 @@ build-mainnet-reproducible:
 compress-wasm:
 	cp ./target/wasm32-unknown-unknown/release/*.wasm ./contract.wasm
 	@## The following line is not necessary, may work only on linux (extra size optimization)
-	@# wasm-opt -Os ./contract.wasm -o ./contract.wasm
+	wasm-opt -Os ./contract.wasm -o ./contract.wasm
 	cat ./contract.wasm | gzip -9 > ./contract.wasm.gz
 
 .PHONY: schema
@@ -48,19 +48,19 @@ schema:
 	cargo run --example schema
 
 # Run local development chain with four funded accounts (named a, b, c, and d)
-.PHONY: start-server
-start-server: # CTRL+C to stop
-	docker run -it --rm \
-		-p 26657:26657 -p 26656:26656 -p 1317:1317 -p 5000:5000 \
-		-v $$(pwd):/root/code \
-		--name secretdev enigmampc/secret-network-sw-dev:v1.2.6
+#.PHONY: start-server
+#start-server: # CTRL+C to stop
+#	docker run -it --rm \
+#		-p 26657:26657 -p 26656:26656 -p 1317:1317 -p 5000:5000 \
+#		-v $$(pwd):/root/code \
+#		--name secretdev enigmampc/secret-network-sw-dev:v1.2.6
 
 # This relies on running `start-server` in another console
 # You can run other commands on the secretcli inside the dev image
 # by using `docker exec secretdev secretcli`.
-.PHONY: store-contract-local
-store-contract-local:
-	docker exec secretdev secretcli tx compute store -y --from a --gas 1000000 /root/code/contract.wasm.gz
+#.PHONY: store-contract-local
+#store-contract-local:
+#docker exec secretdev secretcli tx compute store -y --from a --gas 1000000 /root/code/contract.wasm.gz
 
 .PHONY: clean
 clean:
